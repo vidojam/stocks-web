@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 
-export default function AddStock({ setStock }) {
+export default function AddStocks({ setStock }) {
   const [symbol, setSymbol] = useState('');
   const [open, setOpen] = useState('');
   const [close, setClose] = useState('');

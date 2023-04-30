@@ -6,7 +6,7 @@ export default function AddShow({ setShows }) {
   const [symbol, setSymbol] = useState('');
   const [open, setOpen] = useState('');
   const [close, setClose] = useState('');
-  const [infodate, setInfoDate] = useState('')
+  const [from, setfrom] = useState('')
   const navigate = useNavigate();
 
   
@@ -67,8 +67,8 @@ export default function AddShow({ setShows }) {
       <label htmlFor="infodate">Date of information 
         <input 
           type="date"
-          value={infodate}
-          onChange={ (e)=>{ setInfoDate(e.target.value)} } />
+          value={from}
+          onChange={ (e)=>{ setfrom(e.target.value)} } />
       </label>
 
       <br />
