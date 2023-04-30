@@ -64,14 +64,8 @@ export default function AddShow({ setShows }) {
 
       <br />
 
-      <label htmlFor="infodate">Date of information 
-        <input 
-          type="date"
-          value={from}
-          onChange={ (e)=>{ setfrom(e.target.value)} } />
-      </label>
 
-      <br />
+
 
       <input type="submit" value="Add Stock" />
     </form>
