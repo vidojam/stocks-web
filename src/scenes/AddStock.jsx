@@ -14,9 +14,7 @@ export default function AddStocks({ setStock }) {
   const stockSymbolEl = document.querySelector(".stock-symbol");
   const stockOpenEl = document.querySelector(".stock-open");
   const stockCloseEl = document.querySelector(".stock-close");
-  const symbolEnteredEl = document.getElementById(".input");
-  
-  
+
   const handleAddStock = (e) => {
     e.preventDefault();
   }  
@@ -27,17 +25,15 @@ export default function AddStocks({ setStock }) {
   
       let symbolEntered = prompt("What is the stock symbol");
       let currentDate = prompt("Enter date requested in (YYYY-MM-DD) format");
-      // or let currentDate = new Date().toJSON().slice(0, 10); for today's 10 digit date
               
-      response = await fetch("https://api.polygon.io/v1/open-close/"+symbolEntered+"/"+currentDate+"?adjusted=true&apiKey=ECu3DZ52ZSlRpeIuZks8RI7d_2fbdQpf");
+      const response = await fetch("https://api.polygon.io/v1/open-close/"+symbolEntered+"/"+currentDate+"?adjusted=true&apiKey=ECu3DZ52ZSlRpeIuZks8RI7d_2fbdQpf");
 
       const data = await response.json();
-      stockContainerEl.style.display = "block";
-      stockDateEl.innerText = data.from;
-      stockSymbolEl.innerText = data.symbol;
-      stockOpenEl.innerText = data.open;
-      stockCloseEl.innerText = data.close;
-
+        stockContainerEl.style.display = "block";
+        stockDateEl.innerText = data.from;
+        stockSymbolEl.innerText = data.symbol;
+        stockOpenEl.innerText = data.open;
+        stockCloseEl.innerText = data.close;
 
       navigate("/");
         
@@ -47,25 +43,6 @@ export default function AddStocks({ setStock }) {
     }
   });
 
-
- 
-
-  //   fetch("https://api.polygon.io/v1/open-close/"+symbolEntered+"/"+currentDate+"?adjusted=true&apiKey=ECu3Dz52ZslRpeIuZks8RI7d_2fbdqpf", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json"},
-  //     body: JSON.stringify( {symbol, open, close} )
-  //   })
-  //   .then(resp => resp.json())
-  //   .then(data => {
-  //     if(data.message) { 
-  //       alert(data.message) 
-  //       return 
-  //     }
-  //     setStock(data);
-  //     navigate("/");
-  //   })
-  //   .catch(alert)
-  // }
 
   return (
     <>
