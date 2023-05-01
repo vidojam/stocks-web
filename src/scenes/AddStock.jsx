@@ -20,7 +20,7 @@ export default function AddStocks({ setStock }) {
   }  
   
   btn2El.addEventListener("click", async function(){ 
-  
+    
     try {    
   
       let symbolEntered = prompt("What is the stock symbol");

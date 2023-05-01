@@ -1,74 +1,52 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
+export default function SignUp({ setUser }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-export default function AddShow({ setShows }) {
-  const [symbol, setSymbol] = useState('');
-  const [open, setOpen] = useState('');
-  const [close, setClose] = useState('');
-  const [from, setfrom] = useState('')
-  const navigate = useNavigate();
-
-  
-
-
-
-  const handleAddStock = (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
 
-    fetch("https://stocks-api.web.app/shows", {
+    fetch("https://tv-shows-api-c10.web.app/signup", {
       method: "POST",
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify( {symbol, open, close, from} )
+      headers: { "Content-Type":"application/json"},
+      body: JSON.stringify( {email, password})
     })
     .then(resp => resp.json())
     .then(data => {
       if(data.message) { 
         alert(data.message) 
-        return 
+        return
       }
-      setShows(data);
-      navigate("/");
+      setUser(data)
     })
     .catch(alert)
-  }
+   }
 
   return (
     <>
-    <h2>Add Stock Symbol</h2>
-    <form onSubmit={handleAddStock}>
-      <label htmlFor="symbol">Stock Symbol
-        <input 
-          type="text"
-          value={symbol}
-          onChange={ (e)=> { setSymbol(e.target.value)}} />
-      </label>
+      <h2>Signup</h2>
+      <form onSubmit={handleSignUp}>
+        <label htmlFor="email">Email
+          <input 
+            type="email"
+            value={email}
+            onChange={ (e) => {setEmail(e.target.value)} } />
+        </label>
 
-      <br />
+        <br />
 
-      <label htmlFor="open">Opening price
-        <input
-          type="number"
-          value={open}
-          onChange={ (e)=> { setOpen(e.target.value)}} />
-      </label>
+        <label htmlFor="password">Password
+          <input
+            type="password"
+            value={password}
+            onChange={ (e) => {setPassword(e.target.value)} } />        
+        </label>
 
-      <br />
+        <br />
 
-      <label htmlFor="close">Closing Price
-        <input 
-          type="number"
-          value={close}
-          onChange={ (e)=>{ setClose(e.target.value)} } />
-      </label>
-
-      <br />
-
-
-
-
-      <input type="submit" value="Add Stock" />
-    </form>
+        <input type="submit" value="Sign Up" />
+      </form>
     </>
   )
 }
